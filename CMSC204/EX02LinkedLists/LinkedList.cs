@@ -26,7 +26,11 @@ namespace EX02LinkedLists
             }
         }
 
-        /// <summary>Searches for a specific Node in the LinkedList whose Student matches the name.</summary>
+        /// <summary>
+        /// Searches for a specific Node in the LinkedList whose Student matches the name.
+        /// </summary>
+        /// <param name="studentName"></param>
+        /// <returns>Node whose data matches the given name, or null if no Node can be found.</returns>
         public Node Search(string studentName)
         {
             Node current = _header;
@@ -80,9 +84,11 @@ namespace EX02LinkedLists
                     }
                 }
                 // Removing tail node -> set Tail to Node just before the tail (need to search)
+                // set new tail's Next property to null
                 else if (_tail == nodeToDelete)
                 {
                     _tail = GetPreviousNode(_tail);
+                    _tail.Next = null;
                 }
                 else
                 {
