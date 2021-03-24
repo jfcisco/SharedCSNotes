@@ -22,10 +22,21 @@ namespace EX02LinkedLists
 
             testList.InsertEnd(bobStudent);
 
+            var caseyStudent = new Node();
+            caseyStudent.Data = new Student()
+            {
+                Name = "Casey",
+                MobileNumber = "7062"
+            };
+            testList.InsertEnd(caseyStudent);
+
             // Test the Insert and Search methods.
             Console.WriteLine(testList.Search("Anna").Data.MobileNumber);
 
             // Test the Delete method implementation for all possible cases:
+            testList.Delete(annaStudent);
+            Node deleteSearch = testList.Search("Anna");
+            Console.WriteLine(deleteSearch == null);
 
             /*
                 Cases to consider:
