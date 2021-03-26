@@ -2,8 +2,8 @@ namespace EX02LinkedLists
 {
     public class LinkedList
     {
-        protected Node _header { get; set; }
-        protected Node _tail { get; set; }
+        protected Node? _header { get; set; }
+        protected Node? _tail { get; set; }
 
         public LinkedList()
         {
