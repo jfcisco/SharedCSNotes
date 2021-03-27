@@ -67,7 +67,7 @@ namespace EX02LinkedLists
         public void Delete(Node nodeToDelete)
         {
             // List is empty -> Do nothing.
-            if (_header != null)
+            if (_header != null && _header == _tail)
             {
                 if (_header == nodeToDelete)
                 {
