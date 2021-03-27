@@ -6,6 +6,24 @@ namespace Ex04BinaryTree
     {
         static void Main(string[] args)
         {
+            var checker = new DuplicateChecker();
+            int[] testData = { 0, 10, 5, 20, 10 , 5};
+
+            foreach (int value in testData)
+            {
+                if (checker.IsDuplicate(value))
+                {
+                    Console.WriteLine($"{value} is a duplicate!");
+                }
+            }
+        }
+
+        static void TestDuplicateChecker()
+        {
+
+        }
+        static void TestBinaryTree()
+        {
             var originalBTree = new BinaryTree(10);
 
             originalBTree.Add(2);
