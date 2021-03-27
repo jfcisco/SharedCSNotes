@@ -82,7 +82,7 @@ namespace Ex04BinaryTree
             else if (value < node.Data)
             {
                 // Apparently, auto-implemented properties are methods
-                 // So, node.Left cannot be passed directly in a ref parameter
+                // So, node.Left cannot be passed directly in a ref parameter
                 Node tempNode = node.Left;
                 AddR(ref tempNode, value);
                 node.Left = tempNode;
@@ -125,31 +125,61 @@ namespace Ex04BinaryTree
         public string PrintReverse()
         {
             string resultString = "";
-            PrintR(_top, ref resultString);
+            _PrintReverse(_top, ref resultString);
             return resultString;
         }
 
-        private void PrintR(Node node, ref string newString)
+        /// <summary>
+        /// Recursive implementation for PrintReverse()
+        /// </summary>
+        /// <param name="node"></param>
+        /// <param name="newString"></param>
+        private void _PrintReverse(Node node, ref string newString)
         {
             if (node == null) { return; }
 
-            PrintR(node.Right, ref newString);
+            _PrintReverse(node.Right, ref newString);
             newString = newString + node.Data.ToString().PadLeft(3);
-            PrintR(node.Left, ref newString);
+            _PrintReverse(node.Left, ref newString);
         }
-    }
 
-    public class Node
-    {
-        public int Data { get; set; }
-        public Node Left { get; set; }
-        public Node Right { get; set; }
-
-        public Node(int initial)
+        /// <summary>
+        /// Adds value to the binary tree only if the value has not been added before.
+        /// </summary>
+        /// <param name="toAdd"></param>
+        /// <returns>True only if value is added, and false otherwise</returns>
+        public bool AddUnique(int value)
         {
-            Data = initial;
-            Left = null;
-            Right = null;
+            return _AddUnique(ref _top, value);
+        }
+
+        private bool _AddUnique(ref Node node, int value)
+        {
+            if (node == null)
+            {
+                node = new Node(value);
+                return true;
+            }
+            else if (value == node.Data)
+            {
+                // Cannot add as value is already in the list.
+                return false;
+            }
+            else if (value < node.Data)
+            {
+                Node tempNode = node.Left;
+                bool added = _AddUnique(ref tempNode, value); // hold result of operation to be returned later
+                node.Left = tempNode;
+                return added;
+
+            }
+            else // value > node.Data
+            {
+                Node tempNode = node.Right;
+                bool added = _AddUnique(ref tempNode, value);
+                node.Right = tempNode;
+                return added;
+            }
         }
     }
 }
