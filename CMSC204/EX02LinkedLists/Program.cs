@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace EX02LinkedLists
 {
@@ -6,8 +7,37 @@ namespace EX02LinkedLists
     {
         static void Main(string[] args)
         {
+            // TestSelfImplem();
+            // TestFrameworkImplem();
+            TestDLL();
+        }
+
+        private static void TestDLL()
+        {
+            var testList = new DoublyLinkedList();
+            testList.InsertRight(null, 1);
+            DoublyLinkedListNode first = testList.Search(1);
+
+            testList.InsertRight(first, 4);
+            testList.InsertRight(first, 2);
+        }
+
+        private static void TestFrameworkImplem()
+        {
+            var testList = new LinkedList<int>();
+            testList.AddLast(3);
+            testList.AddLast(2);
+
+            foreach(int i in testList)
+            {
+                System.Console.WriteLine(i);
+            }
+        }
+
+        private static void TestSelfImplem()
+        {
             var testList = new LinkedList();
-            
+
             var annaStudent = new Node();
             annaStudent.Data = new Student();
             annaStudent.Data.Name = "Anna";
