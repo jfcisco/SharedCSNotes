@@ -5,6 +5,15 @@
 		},
 		{
 			"path": "EX02LinkedLists"
+		},
+		{
+			"path": "Ex03StacksQueues"
+		},
+		{
+			"path": "Ex04BinaryTree"
+		},
+		{
+			"path": "Ex05BSTAVL"
 		}
 	],
 	"settings": {}
