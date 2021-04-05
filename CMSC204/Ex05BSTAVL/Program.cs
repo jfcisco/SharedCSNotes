@@ -6,7 +6,14 @@ namespace Ex05BSTAVL
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            BST searchTree = new(5);
+            searchTree.Add(4);
+            searchTree.Add(6);
+            searchTree.Add(8);
+            searchTree.Add(10);
+            
+            Console.WriteLine($"Maximum is {searchTree.GetMaximum()}");
+            Console.WriteLine($"Minimum is {searchTree.GetMinimum()}");
         }
     }
 }
