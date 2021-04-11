@@ -55,3 +55,17 @@ In the textbook, this is a double left rotate: right rotate right subtree, and t
 
 When inserting, the AVL tree will check the balance factor (height of left - height of right).
 
+### Other Learnings:
+* Applies recursively, meaning the violating node need not be the head node of the entire binary search tree.
+* It could be the root node of the right subtree.
+
+```    
+       21
+    /     \
+   A       26
+subtree      \
+             30
+             /
+            28
+```
+Subtree with node 26 has right-left imbalance.
