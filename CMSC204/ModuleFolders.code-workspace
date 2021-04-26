@@ -17,6 +17,9 @@
 		},
 		{
 			"path": "Ex06Heap"
+		},
+		{
+			"path": "Ex07Hash"
 		}
 	],
 	"settings": {}
