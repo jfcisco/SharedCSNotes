@@ -6,6 +6,7 @@
 2. Write the adjacency matrix representation
 3. Write an algorithm for breadth-first search
 4. Write an algorithm for depth-first search
+5. Answer Discussion Forum
 
 ## Notes from Playlist
 1. Graphs can be represented by using the right data structure for the vertices and edges
