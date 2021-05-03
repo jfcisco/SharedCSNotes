@@ -1,10 +1,10 @@
 namespace Ex08Graphs
 {
-    public class Vertex
+    // Generic implementation of a vertex in a graph
+    public class GraphVertex<T>
     {
-        public char Value;
-        
-        public Vertex(char value)
+        public T Value;
+        public GraphVertex(T value)
         {
             Value = value;
         }
