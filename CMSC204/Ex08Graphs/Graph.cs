@@ -3,13 +3,13 @@ namespace Ex08Graphs
     // Describes the APIs for the Graph data structure
     public abstract class Graph<T>
     {
-        public abstract GraphVertex<T>[] PerformDepthFirstTraversal();
+        public abstract T[] PerformDepthFirstTraversal();
 
-        public abstract GraphVertex<T>[] PerformBreadthFirstTraversal();
+        public abstract T[] PerformBreadthFirstTraversal();
 
-        public abstract bool SearchDepthFirst();
+        public abstract bool SearchDepthFirst(T value);
 
-        public abstract bool SearchBreadthFirst();
+        public abstract bool SearchBreadthFirst(T value);
         
     }
 }
