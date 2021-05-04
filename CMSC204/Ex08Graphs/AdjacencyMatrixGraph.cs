@@ -1,4 +1,6 @@
 using System;
+// TODO: Remove dependency on System.Collections.Generic. Better to use own Stack and Queue implementation
+using System.Collections.Generic;
 
 namespace Ex08Graphs
 {
@@ -7,11 +9,13 @@ namespace Ex08Graphs
     /// </summary>
     public class AdjacencyMatrixGraph<T> : Graph<T>
     {
+        private int Order; // Number of vertices in the graph
+
         // Assumptions: Graph is unweighted and undirected. 
-        private GraphVertex<T>[] Vertices { get; set;  }
+        public T[] Vertices { get; private set; }
 
         // TODO: Add validation in case the adjacency matrix is of the wrong dimension.
-        private byte[,] AdjacencyMatrix { get; set; }
+        public byte[][] AdjacencyMatrix { get; set; }
 
         /// <summary>
         /// Instantiates an adjacency matrix graph with a given array of vertex values
@@ -19,32 +23,83 @@ namespace Ex08Graphs
         /// <param name="vertexValues">Array of vertex values</param>
         public AdjacencyMatrixGraph(T[] vertexValues)
         {
-            int size = Vertices.Length;
+            Order = vertexValues.Length;
 
-            for (int i = 0; i < size; i++)
+            Vertices = new T[Order];
+            for (int i = 0; i < Order; i++)
             {
-                Vertices[i] = new GraphVertex<T>(vertexValues[i]);
+                Vertices[i] = vertexValues[i];
             }
 
-            AdjacencyMatrix = new byte[size, size];
+            // Initialize Adjacency Matrix
+            AdjacencyMatrix = new byte[Order][];
+
+            for (int i = 0; i < Order; i++)
+            {
+                AdjacencyMatrix[i] = new byte[Order];
+            }
         }
 
-        public override GraphVertex<T>[] PerformBreadthFirstTraversal()
+        public override T[] PerformBreadthFirstTraversal()
         {
             throw new NotImplementedException();
         }
 
-        public override GraphVertex<T>[] PerformDepthFirstTraversal()
+        public override T[] PerformDepthFirstTraversal()
+        {
+            // Keeps track of the order the indices were visited
+            int[] indicesOfVisited = new int[Order]; // visited indices
+            int countOfVisitedVertices = 0;
+
+            // Mirrors the Vertices array: visited[i] = true if Vertices[i] is already visited
+            bool[] visited = new bool[Order];
+
+            // Keep vertex indices in the stack
+            Stack<int> stack = new Stack<int>();
+
+            // Push the first vertex to the stack
+            stack.Push(0);
+            
+            while (stack.Count > 0)
+            {
+                int vertexIndex = stack.Pop();
+
+                if (!visited[vertexIndex])
+                {
+                    // Count vertex as visited
+                    indicesOfVisited[countOfVisitedVertices] = vertexIndex;
+                    countOfVisitedVertices++;
+                    visited[vertexIndex] = true;
+
+                    // Push unvisited vertices that are adjacent to currentVertex to the stack.
+                    for (int i = 0; i < Order; i++)
+                    {
+                        bool isAdjacentToCurrentVertex = AdjacencyMatrix[vertexIndex][i] == 1;
+                        if (isAdjacentToCurrentVertex && !visited[i])
+                        {
+                            stack.Push(i);
+                        }
+                    }
+                }
+            }
+
+            // Map visited indices to their values
+            T[] verticesVisited = new T[Order];
+            
+            for (int i = 0; i < Order; i++)
+            {
+                verticesVisited[i] = Vertices[indicesOfVisited[i]];
+            }
+
+            return verticesVisited;
+        }
+
+        public override bool SearchBreadthFirst(T value)
         {
             throw new NotImplementedException();
         }
 
-        public override bool SearchBreadthFirst()
-        {
-            throw new NotImplementedException();
-        }
-
-        public override bool SearchDepthFirst()
+        public override bool SearchDepthFirst(T value)
         {
             throw new NotImplementedException();
         }
