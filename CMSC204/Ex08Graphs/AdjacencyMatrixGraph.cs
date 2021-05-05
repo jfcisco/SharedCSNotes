@@ -40,11 +40,6 @@ namespace Ex08Graphs
             }
         }
 
-        public override T[] PerformBreadthFirstTraversal()
-        {
-            throw new NotImplementedException();
-        }
-
         public override T[] PerformDepthFirstTraversal()
         {
             // Keeps track of the order the indices were visited
@@ -62,19 +57,20 @@ namespace Ex08Graphs
             
             while (stack.Count > 0)
             {
-                int vertexIndex = stack.Pop();
+                // Get index of the vertex being visited 
+                int currentIndex = stack.Pop();
 
-                if (!visited[vertexIndex])
+                if (!visited[currentIndex])
                 {
                     // Count vertex as visited
-                    indicesOfVisited[countOfVisitedVertices] = vertexIndex;
+                    indicesOfVisited[countOfVisitedVertices] = currentIndex;
                     countOfVisitedVertices++;
-                    visited[vertexIndex] = true;
+                    visited[currentIndex] = true;
 
                     // Push unvisited vertices that are adjacent to currentVertex to the stack.
                     for (int i = 0; i < Order; i++)
                     {
-                        bool isAdjacentToCurrentVertex = AdjacencyMatrix[vertexIndex][i] == 1;
+                        bool isAdjacentToCurrentVertex = AdjacencyMatrix[currentIndex][i] == 1;
                         if (isAdjacentToCurrentVertex && !visited[i])
                         {
                             stack.Push(i);
@@ -87,6 +83,52 @@ namespace Ex08Graphs
             T[] verticesVisited = new T[Order];
             
             for (int i = 0; i < Order; i++)
+            {
+                verticesVisited[i] = Vertices[indicesOfVisited[i]];
+            }
+
+            return verticesVisited;
+        }
+
+        public override T[] PerformBreadthFirstTraversal()
+        {
+            int[] indicesOfVisited = new int[Order];
+            int countOfVisitedVertices = 0;
+            bool[] visited = new bool[Order];
+
+            // Keep a queue for perfomring BFS traversal
+            Queue<int> queue = new Queue<int>();
+
+            // Push the starting node to the queue
+            queue.Enqueue(0);
+
+            while(queue.Count > 0)
+            {
+                int currentIndex = queue.Dequeue();
+
+                if (!visited[currentIndex])
+                {
+                    // Visit the vertex
+                    indicesOfVisited[countOfVisitedVertices] = currentIndex;
+                    countOfVisitedVertices++;
+                    visited[currentIndex] = true;
+
+                    // Enqueue all adjacent and unvisited vertices
+                    for (var i = 0; i < Order; i++)
+                    {
+                        bool isAdjacentToCurrentVertex = AdjacencyMatrix[currentIndex][i] == 1;
+
+                        if (isAdjacentToCurrentVertex && !visited[i])
+                        {
+                            queue.Enqueue(i);
+                        }
+                    }
+                }
+            }
+
+            T[] verticesVisited = new T[Order];
+
+            for (var i = 0; i < Order; i++)
             {
                 verticesVisited[i] = Vertices[indicesOfVisited[i]];
             }
