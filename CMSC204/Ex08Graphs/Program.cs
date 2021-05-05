@@ -7,16 +7,9 @@ namespace Ex08Graphs
         static void Main(string[] args)
         {
             // Console.WriteLine("Hello World!");
-
-            MatrixGraph letters = new MatrixGraph();
+            char[] vertices = { 'A', 'B', 'C' };
+            AdjacencyMatrixGraph<char> letters = new AdjacencyMatrixGraph<char>(vertices);
             
-            letters.AddVertex('A');
-            letters.AddVertex('B');
-            letters.AddVertex('C');
-
-            letters.AddEdge('A', 'B');
-            letters.AddEdge('A', 'C');
-
             Console.WriteLine(letters);
         }
     }
