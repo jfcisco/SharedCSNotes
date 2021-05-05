@@ -3,7 +3,7 @@ using System;
 namespace Ex03StacksQueues
 {
     /// <summary>Stack implemented using the array data structure.</summary>
-    class ArrayStack
+    public class ArrayStack
     {
         public string[] Data { get; private set; }
         // Omitting setter because we want the user to modify data only through methods.
