@@ -36,5 +36,29 @@ namespace Ex08Graphs.Tests
 
             Assert.Equal(new int[] { 1, 3, 5, 6, 4, 2 }, resultOfDFSTraversal);
         }
+
+        [Fact]
+        public void BreadthFirstTraversalIsCorrect()
+        {
+            // Use example graph in the book
+            int[] vertices = { 1, 2, 3, 4, 5, 6 };
+
+            // Manually setup adjacency matrix 
+            byte[][] adjacencyMatrix = 
+            {           //   1  2  3  4  5  6
+                new byte[] { 0, 1, 1, 0, 0, 0 },
+                new byte[] { 1, 0, 1, 1, 0, 0 },
+                new byte[] { 1, 1, 0, 0, 1, 0 },
+                new byte[] { 0, 1, 0, 0, 1, 1 },
+                new byte[] { 0, 0, 1, 1, 0, 1 },
+                new byte[] { 0, 0, 0, 1, 1, 0 }
+            };
+
+            AdjacencyMatrixGraph<int> graph = new AdjacencyMatrixGraph<int>(vertices) { AdjacencyMatrix = adjacencyMatrix };
+
+            int[] resultOfBFSTraversal = graph.PerformBreadthFirstTraversal();
+
+            Assert.Equal(new int[] { 1, 2, 3, 4, 5, 6 }, resultOfBFSTraversal);
+        }
     }
 }
