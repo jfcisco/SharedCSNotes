@@ -1,6 +1,7 @@
 using System;
 // TODO: Remove dependency on System.Collections.Generic. Better to use own Stack and Queue implementation
 using System.Collections.Generic;
+using Ex03StacksQueues;
 
 namespace Ex08Graphs
 {
@@ -50,7 +51,7 @@ namespace Ex08Graphs
             bool[] visited = new bool[Order];
 
             // Keep vertex indices in the stack
-            Stack<int> stack = new Stack<int>();
+            ArrayStack<int> stack = new ArrayStack<int>();
 
             // Push the first vertex to the stack
             stack.Push(0);
