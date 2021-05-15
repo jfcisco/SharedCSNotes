@@ -8,10 +8,10 @@ namespace Ex03StacksQueues
         private T[] Data;
         private int Head;
 
-        public ArrayStack(int size)
+        public ArrayStack()
         {
-            Size = size;
-            Data = new T[size];
+            Size = 1;
+            Data = new T[Size];
             Head = 0;
         }
 
@@ -26,8 +26,26 @@ namespace Ex03StacksQueues
             }
             else
             {
-                throw new Exception("Stack overflow error!");
+                // No more space in the stack
+                int newSize = Size * 2;
+                Data = GrowArray(newSize);
+                Size = newSize;
+                Push(value);
             }
+        }
+
+        // Returns the Data array but bigger
+        private T[] GrowArray(int newSize)
+        {
+            T[] newArray = new T[newSize];
+
+            // Copy Data elements to bigger array
+            for (int i = 0; i < Size; i++)
+            {
+                newArray[i] = Data[i];
+            }
+
+            return newArray;
         }
 
         public T Pop()
