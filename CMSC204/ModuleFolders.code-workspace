@@ -23,6 +23,12 @@
 		},
 		{
 			"path": "Ex08Graphs"
+		},
+		{
+			"path": "Ex09Complexity"
+		},
+		{
+			"path": "Ex10SimplifyingSummations"
 		}
 	],
 	"settings": {}
