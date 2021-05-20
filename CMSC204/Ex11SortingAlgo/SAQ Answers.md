@@ -27,3 +27,21 @@ sum of (n - i) from i = 1 to n - 1
 ```
 
 ## Insertion Sort
+
+```
+for i = 2 to n:                             4*(n - 2 + 1) = 4(n-1)
+    tobs = A[i]                             1
+    j = i - 1                               1
+    
+    while (tobs < A[j]) and (j > 0):        1: tobs < A[j] is always false, so only comparison is performed
+        A[j+1] = A[j]                       
+        j = j - 1
+
+     A[j+1] = tobs                          1
+
+
+= 4(n-1) < 5n, for n > n_0 = -4
+= O(n)
+```
+
+## QuickSort
